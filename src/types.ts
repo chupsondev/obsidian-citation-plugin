@@ -46,6 +46,10 @@ export class Library {
    */
   getTemplateVariablesForCitekey(citekey: string): Record<string, any> {
     const entry: Entry = this.entries[citekey];
+    var shortTitle = entry.titleShort;
+    if (!shortTitle) {
+      shortTitle = entry.title;
+    }
     const shortcuts = {
       citekey: citekey,
 
@@ -61,7 +65,7 @@ export class Library {
       publisher: entry.publisher,
       publisherPlace: entry.publisherPlace,
       title: entry.title,
-      titleShort: entry.titleShort,
+      titleShort: shortTitle,
       URL: entry.URL,
       year: entry.year?.toString(),
       zoteroSelectURI: entry.zoteroSelectURI,
